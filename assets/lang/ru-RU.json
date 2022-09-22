@@ -30,5 +30,6 @@
   "myFollowing": "Мои подписки",
   "myFollowers": "Мои подписчики",
   "myBadges": "Мои значки",
-  "myOrganizations": "Мои группы"
+  "myOrganizations": "Мои группы",
+  "empty": "Пусто"
 }

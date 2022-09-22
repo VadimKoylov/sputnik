@@ -123,6 +123,7 @@ class _SignInPageState extends State<SignInPage> {
                                           ),
                                           AppTextField(
                                             onChanged: store.setNickname,
+                                            initialValue: store.nickname,
                                             hint: 'enterNickname',
                                             fontSize: 36,
                                           ),

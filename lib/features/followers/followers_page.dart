@@ -81,29 +81,44 @@ class _FollowersPageState extends State<FollowersPage> {
                           onRefresh: () async {
                             await followersStore.getFollowers();
                           },
-                          child: ListView.separated(
-                            padding: EdgeInsets.zero,
-                            itemCount: followersStore.followers.length,
-                            itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  if (index == 0)
-                                    const Divider(
-                                      color: AppColors.white6,
-                                      thickness: 1,
+                          child: followersStore.followers.isNotEmpty
+                              ? ListView.separated(
+                                  padding: EdgeInsets.zero,
+                                  itemCount: followersStore.followers.length,
+                                  itemBuilder: (context, index) {
+                                    return Column(
+                                      children: [
+                                        if (index == 0)
+                                          const Divider(
+                                            color: AppColors.white6,
+                                            thickness: 1,
+                                          ),
+                                        const SizedBox(height: 20),
+                                        FollowerCell(
+                                          follower:
+                                              followersStore.followers[index],
+                                        ),
+                                        const SizedBox(height: 20),
+                                      ],
+                                    );
+                                  },
+                                  separatorBuilder: (context, index) {
+                                    return const Divider(thickness: 2);
+                                  },
+                                )
+                              : ListView(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: Center(
+                                        child: Text(
+                                          'empty'.tr(),
+                                          style: AppTextStyle.grey6w500size17(),
+                                        ),
+                                      ),
                                     ),
-                                  const SizedBox(height: 20),
-                                  FollowerCell(
-                                    follower: followersStore.followers[index],
-                                  ),
-                                  const SizedBox(height: 20),
-                                ],
-                              );
-                            },
-                            separatorBuilder: (context, index) {
-                              return const Divider(thickness: 2);
-                            },
-                          ),
+                                  ],
+                                ),
                         ),
                       ),
                     ],

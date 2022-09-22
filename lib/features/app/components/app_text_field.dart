@@ -9,6 +9,7 @@ class AppTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final TextAlignVertical? textAlignVertical;
   final EdgeInsets? contentPadding;
+  final String? initialValue;
 
   const AppTextField({
     required this.onChanged,
@@ -17,12 +18,14 @@ class AppTextField extends StatelessWidget {
     this.suffixIcon,
     this.textAlignVertical,
     this.contentPadding,
+    this.initialValue,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
       onChanged: onChanged,
       style: TextStyle(
         color: AppColors.grey1,

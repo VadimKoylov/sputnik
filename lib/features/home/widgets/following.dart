@@ -23,31 +23,39 @@ class Following extends StatelessWidget {
               'followingYou'.tr(),
               style: AppTextStyle.grey1w700size34(),
             ),
-            Flexible(
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'viewAll'.tr(),
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.clip,
-                  style: AppTextStyle.grey1w400size15Underline(),
+            if (following.isNotEmpty)
+              Flexible(
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'viewAll'.tr(),
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.clip,
+                    style: AppTextStyle.grey1w400size15Underline(),
+                  ),
                 ),
               ),
-            ),
           ],
         ),
         const SizedBox(height: 20),
         Expanded(
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemCount: following.length,
-            itemBuilder: (context, index) {
-              return FollowingCell(following: following[index]);
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return const SizedBox(width: 20);
-            },
-          ),
+          child: following.isNotEmpty
+              ? ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: following.length,
+                  itemBuilder: (context, index) {
+                    return FollowingCell(following: following[index]);
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const SizedBox(width: 20);
+                  },
+                )
+              : Center(
+                  child: Text(
+                    'empty'.tr(),
+                    style: AppTextStyle.grey6w500size17(),
+                  ),
+                ),
         ),
       ],
     );

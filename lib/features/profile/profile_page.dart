@@ -108,19 +108,23 @@ class _ProfilePageState extends State<ProfilePage> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(100),
-                              child: Image.network(
-                                store.profile!.avatarUrl!,
-                                width: 165,
-                                height: 165,
-                              ),
+                              child: store.profile!.avatarUrl != null
+                                  ? Image.network(
+                                      store.profile!.avatarUrl!,
+                                      width: 165,
+                                      height: 165,
+                                    )
+                                  : const Icon(Icons.person_outline_outlined),
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              store.profile!.name!,
+                              store.profile?.name ?? 'User',
                               style: AppTextStyle.grey1w700size34(),
                             ),
                             Text(
-                              store.profile!.id.toString(),
+                              store.profile?.id == null
+                                  ? 'User id'
+                                  : store.profile!.id.toString(),
                               style: AppTextStyle.grey9w500size17(),
                             ),
                             const SizedBox(height: 24),
